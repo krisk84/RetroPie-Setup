@@ -422,22 +422,27 @@ function platform_odroid-c2() {
         __platform_flags="arm armv8 neon mali gles"
     else
         __default_cpu_flags="-march=native"
-        __platform_flags="aarch64 mali gles"
+        __platform_flags="aarch64 kms gles"
     fi
 }
 
 function platform_odroid-xu() {
-    __default_cpu_flags="-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
-    # required for mali-fbdev headers to define GL functions
-    __default_cflags=" -DGL_GLEXT_PROTOTYPES"
-    __platform_flags="arm armv7 neon mali gles"
+    __default_cpu_flags="-mcpu=cortex-a15 -mtune=cortex-a15.cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+    __platform_flags="arm armv7 neon gles"
+    if [[ -r "/etc/armbian-release" ]]; then
+        __platform_flags+=" kms"
+    else
+        # required for mali-fbdev headers to define GL functions
+        __default_cflags=" -DGL_GLEXT_PROTOTYPES"
+        __platform_flags+=" mali"
+    fi
 }
 
 function platform_tinker() {
-    __default_cpu_flags="-marm -march=armv7-a -mtune=cortex-a17 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+    __default_cpu_flags="-marm -march=armv7ve -mtune=cortex-a17 -mfpu=neon-vfpv4 -mfloat-abi=hard"
     # required for mali headers to define GL functions
     __default_cflags=" -DGL_GLEXT_PROTOTYPES"
-    __platform_flags="arm armv7 neon kms gles"
+    __platform_flags="arm armv7 neon kms gles gles3"
 }
 
 function platform_x86() {

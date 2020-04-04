@@ -13,8 +13,8 @@ rp_module_id="lr-mupen64plus"
 rp_module_desc="N64 emu - Mupen64Plus + GLideN64 for libretro"
 rp_module_help="ROM Extensions: .z64 .n64 .v64\n\nCopy your N64 roms to $romdir/n64"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mupen64plus-libretro/master/LICENSE"
-rp_module_section="main"
-rp_module_flags="!aarch64"
+rp_module_section="opt"
+#rp_module_flags="!aarch64"
 
 function _update_hook_lr-mupen64plus() {
     # retroarch renamed lr-mupen64plus to lr-parallel-n64 and
@@ -30,7 +30,7 @@ function _update_hook_lr-mupen64plus() {
 }
 
 function depends_lr-mupen64plus() {
-    local depends=(flex bison libpng-dev)
+    local depends=(flex bison libpng-dev libboost-filesystem1.71-dev)
     isPlatform "x11" && depends+=(libglew-dev libglu1-mesa-dev)
     isPlatform "x86" && depends+=(nasm)
     isPlatform "mesa" && depends+=(libgles2-mesa-dev)

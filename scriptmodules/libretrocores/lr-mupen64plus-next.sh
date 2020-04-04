@@ -13,7 +13,7 @@ rp_module_id="lr-mupen64plus-next"
 rp_module_desc="N64 emulator - Mupen64Plus + GLideN64 for libretro (next version)"
 rp_module_help="ROM Extensions: .z64 .n64 .v64\n\nCopy your N64 roms to $romdir/n64"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/mupen64plus-libretro-nx/master/LICENSE"
-rp_module_section="opt kms=main"
+rp_module_section="main"
 rp_module_flags=""
 
 function depends_lr-mupen64plus-next() {
@@ -40,16 +40,17 @@ function build_lr-mupen64plus-next() {
         params+=(platform="$__platform")
     elif isPlatform "mesa"; then
         params+=(platform="$__platform-mesa")
-    elif isPlatform "mali"; then
-        params+=(platform="odroid")
     else
-        isPlatform "arm" && params+=(WITH_DYNAREC=arm)
+	isPlatform "odroid-xu" && params+=(platform=odroid BOARD=ODROID-XU)
+	isPlatform "odroid-c2" && params+=(platform=odroid64 BOARD=ODROID-C2)
+	isPlatform "tinker" && params+=(platform=RK3288)
+	isPlatform "arm" && params+=(WITH_DYNAREC=arm)
         isPlatform "neon" && params+=(HAVE_NEON=1)
     fi
     if isPlatform "gles3"; then
-        params+=(FORCE_GLES3=1)
+        params+=(FORCE_GLES3=1 GLES3=1)
     elif isPlatform "gles"; then
-        params+=(FORCE_GLES=1)
+        params+=(FORCE_GLES=1 GLES=1)
     fi
     # use a custom core name to avoid core option name clashes with lr-mupen64plus
     params+=(CORE_NAME=mupen64plus-next)
@@ -58,7 +59,7 @@ function build_lr-mupen64plus-next() {
     if isPlatform "armv6"; then
         CFLAGS="$CFLAGS -DARMv5_ONLY" make "${params[@]}"
     else
-        make "${params[@]}"
+        make "${params[@]}" -j4
     fi
 
     md_ret_require="$md_build/mupen64plus_next_libretro.so"

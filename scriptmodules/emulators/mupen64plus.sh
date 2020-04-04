@@ -13,7 +13,7 @@ rp_module_id="mupen64plus"
 rp_module_desc="N64 emulator MUPEN64Plus"
 rp_module_help="ROM Extensions: .z64 .n64 .v64\n\nCopy your N64 roms to $romdir/n64"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/mupen64plus/mupen64plus-core/master/LICENSES"
-rp_module_section="main"
+rp_module_section="opt"
 rp_module_flags="!mali vero4k"
 
 function depends_mupen64plus() {
@@ -139,7 +139,6 @@ function build_mupen64plus() {
     else
         md_ret_require+=(
             'mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so'
-            'mupen64plus-rsp-z64/projects/unix/mupen64plus-rsp-z64.so'
         )
         if isPlatform "x86"; then
             md_ret_require+=('mupen64plus-rsp-cxd4/projects/unix/mupen64plus-rsp-cxd4-sse2.so')

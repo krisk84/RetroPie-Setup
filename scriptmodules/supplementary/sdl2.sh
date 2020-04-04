@@ -78,8 +78,11 @@ function build_sdl2() {
         conf_flags+=("--disable-video-x11")
     fi
     ! isPlatform "x11" && conf_flags+=("--disable-video-vulkan")
-    isPlatform "mali" && conf_flags+=("--enable-video-mali" "--disable-video-opengl")
+    isPlatform "mali" && conf_flags+=("--enable-video-mali")
     isPlatform "rpi" && conf_flags+=("--enable-video-rpi")
+    isPlatform "odroid-xu" && conf_flags+=("--disable-video-opengl")
+    isPlatform "odroid-c2" && conf_flags+=("--disable-video-opengl")
+    isPlatform "tinker" && conf_flags+=("--disable-video-opengl")
     isPlatform "kms" || isPlatform "rpi" && conf_flags+=("--enable-video-kmsdrm")
 
     # format debian package dependencies into comma-separated list
