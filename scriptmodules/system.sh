@@ -264,7 +264,13 @@ function get_os_version() {
 }
 
 function get_retropie_depends() {
-    local depends=(git dialog wget gcc g++ build-essential unzip xmlstarlet python-pyudev ca-certificates)
+    local depends=(git dialog wget gcc g++ build-essential unzip xmlstarlet ca-certificates)
+
+    if [[ "$__os_debian_ver" = "11" ]]; then
+        depends+=(python3-pyudev)
+    else
+        depends+=(python-pyudev)
+    fi
 
     [[ -n "$DISTCC_HOSTS" ]] && depends+=(distcc)
 
@@ -305,6 +311,15 @@ function get_rpi_video() {
 
 function get_platform() {
     local architecture="$(uname --machine)"
+
+    if [[ -r "/etc/armbian-release" ]]; then
+        case "$(grep 'BOARD=' /etc/armbian-release | cut -d'=' -f2)" in
+            odroidc2)
+                __platform="odroid-c2"
+                ;;
+        esac
+    fi
+
     if [[ -z "$__platform" ]]; then
         case "$(sed -n '/^Hardware/s/^.*: \(.*\)/\1/p' < /proc/cpuinfo)" in
             BCM*)
