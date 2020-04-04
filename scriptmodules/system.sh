@@ -24,6 +24,8 @@ function setup_env() {
 
     get_retropie_depends
 
+    install_local_debs
+
     conf_memory_vars
     conf_binary_vars
     conf_build_vars
@@ -284,6 +286,13 @@ function get_retropie_depends() {
     fi
 }
 
+function install_local_debs() {
+    if [[ -d "debs/$__platform/$__os_vendor/$__os_id/$__os_release" ]]; then
+        echo "Detected local package directory for $__platform/$__os_vendor/$__os_id/$__os_release - installing"
+        dpkg -i "debs/$__platform/$__os_vendor/$__os_id/$__os_release"/*.deb
+    fi
+}
+
 function get_rpi_video() {
     local pkgconfig="/opt/vc/lib/pkgconfig"
 
@@ -313,6 +322,7 @@ function get_platform() {
     local architecture="$(uname --machine)"
 
     if [[ -r "/etc/armbian-release" ]]; then
+        __os_vendor="armbian"
         case "$(grep 'BOARD=' /etc/armbian-release | cut -d'=' -f2)" in
             odroidc2)
                 __platform="odroid-c2"
