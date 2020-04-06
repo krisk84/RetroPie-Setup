@@ -290,6 +290,7 @@ function install_local_debs() {
     if [[ -d "debs/$__platform/$__os_vendor/$__os_id/$__os_release" ]]; then
         echo "Detected local package directory for $__platform/$__os_vendor/$__os_id/$__os_release - installing"
         dpkg -i "debs/$__platform/$__os_vendor/$__os_id/$__os_release"/*.deb
+        apt --fix-broken install
     fi
 }
 
