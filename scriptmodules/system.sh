@@ -447,7 +447,7 @@ function platform_odroid-c2() {
         __default_cpu_flags="-march=armv8-a+crc -mtune=cortex-a53 -mfpu=neon-fp-armv8"
         __platform_flags="arm armv8 neon mali gles"
     else
-        __default_cpu_flags="-march=native"
+        __default_cpu_flags="-mcpu=cortex-a53"
         __platform_flags="aarch64 kms gles"
     fi
 }
