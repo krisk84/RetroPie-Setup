@@ -471,6 +471,11 @@ function platform_tinker() {
     __platform_flags="arm armv7 neon kms gles gles3"
 }
 
+function platform_tx1() {
+    __default_cpu_flags="-march=native"
+    __platform_flags="aarch64 x11 gl"
+}
+
 function platform_x86() {
     __default_cpu_flags="-march=native"
     __platform_flags="gl"
