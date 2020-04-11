@@ -331,6 +331,24 @@ function get_platform() {
         esac
     fi
 
+    if $(uname --release | grep -q tegra); then
+        __os_vendor="nvidia"
+        case "$(cat /sys/firmware/devicetree/base/model)" in
+            Jetson-TX1)
+                __platform="jetson-tx1"
+                ;;
+            Jetson-TX2)
+                __platform="jetson-tx2"
+                ;;
+            Jetson-Nano)
+                __platform="jetson-nano"
+                ;;
+            Jetson-AGX)
+                __platform="jetson-agx"
+                ;;
+        esac
+    fi
+
     if [[ -z "$__platform" ]]; then
         case "$(sed -n '/^Hardware/s/^.*: \(.*\)/\1/p' < /proc/cpuinfo)" in
             BCM*)
@@ -473,6 +491,26 @@ function platform_tinker() {
 
 function platform_tx1() {
     __default_cpu_flags="-mcpu=cortex-a57.cortex-a53"
+    __platform_flags="aarch64 x11 gl"
+}
+
+function platform_jetson-tx1() {
+    __default_cpu_flags="-march=armv8-a+crypto+simd -mcpu=cortex-a57+crypto+simd"
+    __platform_flags="aarch64 x11 gl"
+}
+
+function platform_jetson-tx2() {
+    __default_cpu_flags="-march=armv8-a+crypto+simd -mcpu=cortex-a57+crypto+simd"
+    __platform_flags="aarch64 x11 gl"
+}
+
+function platform_jetson-nano() {
+    __default_cpu_flags="-march=armv8-a+crypto+simd -mcpu=cortex-a57+crypto+simd"
+    __platform_flags="aarch64 x11 gl"
+}
+
+function platform_jetson-agx() {
+    __default_cpu_flags="-march=armv8-a+crypto+simd -mcpu=cortex-a57+crypto+simd"
     __platform_flags="aarch64 x11 gl"
 }
 
