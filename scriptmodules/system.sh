@@ -489,11 +489,6 @@ function platform_tinker() {
     __platform_flags="arm armv7 neon kms gles gles3"
 }
 
-function platform_tx1() {
-    __default_cpu_flags="-mcpu=cortex-a57.cortex-a53"
-    __platform_flags="aarch64 x11 gl"
-}
-
 function platform_jetson-tx1() {
     __default_cpu_flags="-march=armv8-a+crypto+simd -mcpu=cortex-a57+crypto+simd"
     __platform_flags="aarch64 x11 gl"
