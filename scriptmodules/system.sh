@@ -340,7 +340,7 @@ function get_platform() {
             Jetson-TX2)
                 __platform="jetson-tx2"
                 ;;
-            Jetson-Nano)
+            "NVIDIA Jetson Nano Developer Kit")
                 __platform="jetson-nano"
                 ;;
             Jetson-AGX)
