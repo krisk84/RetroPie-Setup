@@ -328,6 +328,12 @@ function get_platform() {
             odroidc2)
                 __platform="odroid-c2"
                 ;;
+            lepotato)
+                __platform="odroid-c2"
+                ;;
+            tritium-h5)
+                __platform="odroid-c2"
+                ;;
         esac
     fi
 
