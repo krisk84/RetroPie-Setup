@@ -403,6 +403,9 @@ function get_platform() {
             "Allwinner sun8i Family")
                 __platform="armv7-mali"
                 ;;
+            "Khadas VIM3")
+                __platform="khadas-vim3"
+                ;;
             *)
                 case $architecture in
                     i686|x86_64|amd64)
@@ -513,6 +516,11 @@ function platform_jetson-nano() {
 function platform_jetson-agx() {
     __default_cpu_flags="-march=armv8-a+crypto+simd -mcpu=cortex-a57+crypto+simd"
     __platform_flags="aarch64 x11 gl"
+}
+
+function platform_khadas-vim3() {
+    __default_cpu_flags="-march=armv8-a+crypto+simd -mcpu=cortex-a72+crypto+simd"
+    __platform_flags="aarch64 mali gles gles3"
 }
 
 function platform_x86() {
