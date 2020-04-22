@@ -334,6 +334,9 @@ function get_platform() {
             tritium-h5)
                 __platform="odroid-c2"
                 ;;
+            tritium-h3)
+                __platform="armv7-kms"
+                ;;
         esac
     fi
 
@@ -540,6 +543,11 @@ function platform_generic-x11() {
 function platform_armv7-mali() {
     __default_cpu_flags="-march=armv7-a -mfpu=neon-vfpv4 -mfloat-abi=hard"
     __platform_flags="arm armv7 neon mali gles"
+}
+
+function platform_armv7-kms() {
+    __default_cpu_flags="-march=armv7-a -mfpu=neon-vfpv4 -mfloat-abi=hard"
+    __platform_flags="arm armv7 neon kms gles"
 }
 
 function platform_imx6() {
