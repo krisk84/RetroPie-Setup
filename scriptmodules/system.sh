@@ -358,6 +358,16 @@ function get_platform() {
         esac
     fi
 
+    # This is terrible and will match for a variety of vendors SO FIX
+    if $(uname --release | grep -q rockchip); then
+        case "$(cat /sys/firmware/devicetree/base/model)" in
+            "ROCK PI 4B")
+                __platform="rockpi4"
+                __os_vendor="radxa"
+                ;;
+        esac
+    fi
+
     if [[ -z "$__platform" ]]; then
         case "$(sed -n '/^Hardware/s/^.*: \(.*\)/\1/p' < /proc/cpuinfo)" in
             BCM*)
@@ -499,6 +509,13 @@ function platform_tinker() {
     # required for mali headers to define GL functions
     #__default_cflags=" -DGL_GLEXT_PROTOTYPES"
     __platform_flags="arm armv7 neon kms gles gles3"
+}
+
+function platform_rockpi4() {
+     __default_cpu_flags="-mcpu=cortex-a72.cortex-a53"
+    # required for mali headers to define GL functions
+    #__default_cflags=" -DGL_GLEXT_PROTOTYPES"
+    __platform_flags="aarch64 kms gles gles3"
 }
 
 function platform_jetson-tx1() {
