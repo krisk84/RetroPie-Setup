@@ -334,7 +334,10 @@ function get_platform() {
             tritium-h5)
                 __platform="odroid-c2"
                 ;;
-            tritium-h3)
+            renegade)
+                __platform="odroid-c2"
+                ;;
+           tritium-h3)
                 __platform="armv7-kms"
                 ;;
         esac
