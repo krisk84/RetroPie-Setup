@@ -337,8 +337,11 @@ function get_platform() {
             renegade)
                 __platform="odroid-c2"
                 ;;
-           tritium-h3)
+            tritium-h3)
                 __platform="armv7-kms"
+                ;;
+            rockpi-4b)
+                __platform="rockpi4"
                 ;;
         esac
     fi
@@ -357,16 +360,6 @@ function get_platform() {
                 ;;
             Jetson-AGX)
                 __platform="jetson-agx"
-                ;;
-        esac
-    fi
-
-    # This is terrible and will match for a variety of vendors SO FIX
-    if $(uname --release | grep -q rockchip); then
-        case "$(cat /sys/firmware/devicetree/base/model)" in
-            "ROCK PI 4B")
-                __platform="rockpi4"
-                __os_vendor="radxa"
                 ;;
         esac
     fi
