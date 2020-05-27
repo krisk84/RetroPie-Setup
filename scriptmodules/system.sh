@@ -335,7 +335,7 @@ function get_platform() {
                 __platform="odroid-c2"
                 ;;
             renegade)
-                __platform="odroid-c2"
+                __platform="renegade"
                 ;;
             tritium-h3)
                 __platform="armv7-kms"
@@ -497,6 +497,16 @@ function platform_odroid-xu() {
         # required for mali-fbdev headers to define GL functions
         __default_cflags=" -DGL_GLEXT_PROTOTYPES"
         __platform_flags+=" mali"
+    fi
+}
+
+function platform_renegade() {
+    if [[ "$(getconf LONG_BIT)" -eq 32 ]]; then
+        __default_cpu_flags="-march=armv8-a+crc -mtune=cortex-a53 -mfpu=neon-fp-armv8"
+        __platform_flags="arm armv8 neon mali gles"
+    else
+        __default_cpu_flags="-mcpu=cortex-a53"
+        __platform_flags="aarch64 kms gles"
     fi
 }
 
