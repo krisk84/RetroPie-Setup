@@ -1,4 +1,4 @@
-RetroPie-Setup for ASUS TinkerBoard, ODROID C2, and ODROID XU4
+RetroPie-Setup for ASUS TinkerBoard, ODROID C2, ODROID XU4, Nvidia Jetson Platforms, and more
 ==============
 RetroPie-Setup modified for use on ASUS TinkerBoard, ODROID C2, and ODROID XU4 boards. I had these boards sitting around and having found some spare time during the COVID-19 quarantine I wanted to make the best use of them (and my time). Sure there is already support for gaming emulation on these boards from projects such as Lakka, Recalbox, and others but I prefer RetroPie and the full use of the underlying distribution.
 
