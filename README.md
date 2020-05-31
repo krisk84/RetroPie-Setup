@@ -23,7 +23,7 @@ VIM 3
 Hardware Notes
 -------------
 
-- GLES on RockChip platforms is accomplished using ARM Mali binaries from RockChip with updates for Ubuntu style GLES, EGL, and Mesa deb package formatting. This is pretty brittle and likely to break on different distributions due to the complexity of distribution provided packages/libraries and the formatting of the RockChip provided debs. It's a mess.
+- GLES on RockChip platforms is accomplished using ARM Mali binaries from RockChip with updates for Ubuntu style GLES, EGL, and Mesa deb package formatting. This is pretty brittle and likely to break on different distributions due to the complexity of distribution provided packages/libraries and the formatting of the RockChip provided debs. It's a mess but this script will automatically install the required packages from this repo. You'll also get OpenCL working on platforms that support it.
 
 - GLES on the Odroid XU4 "just works" with mali-fbdev from the ODROID Ubuntu 18.04 image.
 
