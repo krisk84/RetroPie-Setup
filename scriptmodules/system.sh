@@ -489,7 +489,7 @@ function platform_odroid-c2() {
 }
 
 function platform_odroid-xu() {
-    __default_cpu_flags="-mcpu=cortex-a15.cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+    __default_cpu_flags="-mcpu=cortex-a15 -mfpu=neon-vfpv4 -mfloat-abi=hard"
     __platform_flags="arm armv7 neon gles"
     if [[ -r "/etc/armbian-release" ]]; then
         __platform_flags+=" kms"
@@ -518,7 +518,7 @@ function platform_tinker() {
 }
 
 function platform_rockpi4() {
-     __default_cpu_flags="-mcpu=cortex-a72.cortex-a53"
+     __default_cpu_flags="-mcpu=cortex-a72"
     # required for mali headers to define GL functions
     #__default_cflags=" -DGL_GLEXT_PROTOTYPES"
     __platform_flags="aarch64 kms gles gles3"
