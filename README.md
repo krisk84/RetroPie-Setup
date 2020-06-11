@@ -1,23 +1,35 @@
-RetroPie-Setup for ASUS TinkerBoard, ODROID C2, and ODROID XU4
+RetroPie-Setup for ASUS TinkerBoard, ODROID C2, ODROID XU4, Nvidia Jetson Platforms, and more
 ==============
 RetroPie-Setup modified for use on ASUS TinkerBoard, ODROID C2, and ODROID XU4 boards. I had these boards sitting around and having found some spare time during the COVID-19 quarantine I wanted to make the best use of them (and my time). Sure there is already support for gaming emulation on these boards from projects such as Lakka, Recalbox, and others but I prefer RetroPie and the full use of the underlying distribution.
 
-Developed on:
+Developed and tested on:
 
-ASUS TinkerBoard Armbian Ubuntu 18.04
+ASUS TinkerBoard
 
-ODROID XU4 ODROID Ubuntu 18.04
+ODROID XU4
 
-ODROID C2 Armbian Debian bullseye
+ODROID C2
+
+Nvidia Jetson TX1, Nano, and AGX
+
+Libre Computer Renegade, Le Potato, and H3/H5
+
+Rock Pi 4B
+
+VIM 3
+
+...and others as they come up
 
 Hardware Notes
 -------------
 
-- GLES on the TinkerBoard is accomplished using ARM Mali binaries from RockChip with updates for Ubuntu style GLES, EGL, and Mesa deb package formatting. This is pretty brittle and likely to break on different distributions due to the complexity of distribution provided packages/libraries and the formatting of the RockChip provided debs. It's a mess.
+- GLES on RockChip platforms is accomplished using ARM Mali binaries from RockChip with updates for Ubuntu style GLES, EGL, and Mesa deb package formatting. This is pretty brittle and likely to break on different distributions due to the complexity of distribution provided packages/libraries and the formatting of the RockChip provided debs. It's a mess but this script will automatically install the required packages from this repo. You'll also get OpenCL working on platforms that support it.
 
 - GLES on the Odroid XU4 "just works" with mali-fbdev from the ODROID Ubuntu 18.04 image.
 
-- GLES on the ODROID C2 works via the Armbian 5.5 kernel lima driver and the updated MESA support from Debian bullseye.
+- GLES on most other platforms is enabled via mainline kernel support and lima (Mali 400/450 GPUs).
+
+- Nvidia Jetson platforms have full OpenGL support and can easily do N64 emulation at 1080P (60 FPS). They also run from X as opposed to KMS/GBM support on all other platforms (except the ancient ones that still use mali fbdev).
 
 General Usage
 -------------
