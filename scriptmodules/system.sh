@@ -358,6 +358,9 @@ function get_platform() {
             "NVIDIA Jetson Nano Developer Kit")
                 __platform="jetson-nano"
                 ;;
+            "NVIDIA Jetson Nano 2GB Developer Kit")
+                __platform="jetson-nano"
+                ;;
             Jetson-AGX)
                 __platform="jetson-agx"
                 ;;
